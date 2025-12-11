@@ -63,6 +63,14 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+	hardware.printers.ensurePrinters = [
+		{
+			name = "zebra";
+			location = "home";
+			deviceUri = "usb://Zebra%20Technologies/ZTC%20LP%202824%20Plus?serial=36J142002267";
+			model = "drv:///sample.drv/zebraep2.ppd";
+		}
+	];
 
   # Enable sound.
   # services.pulseaudio.enable = true;
