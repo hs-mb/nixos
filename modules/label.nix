@@ -22,7 +22,7 @@ in
 			enable = true;
 			description = "Label printing server";
 			serviceConfig = {
-				ExecStart = "${labelpkgs.printserver}/bin/printserver zebra ${config.label.printserver.addr}";
+				ExecStart = "${labelpkgs.printserver}/bin/printserver -b \"${pkgs.cups}/bin/lpr\" zebra ${config.label.printserver.addr}";
 				Restart = "always";
 			};
 			wantedBy = [ "multi-user.target" ];
