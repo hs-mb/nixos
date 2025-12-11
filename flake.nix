@@ -3,6 +3,11 @@
 
 	inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+
+		label = {
+			url = "github:hs-mb/label";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = { self, nixpkgs, ... }@inputs: {
@@ -17,6 +22,9 @@
 					modules = [
 						./hosts/labeltc
 					];
+					specialArgs = {
+						inherit system;
+					};
 				};
 			};
 	};
