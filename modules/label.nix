@@ -6,10 +6,10 @@ in
 {
 	options.label = {
 		enable = lib.mkEnableOption "Enable the label module";
-		printserver.port = lib.mkOption {
+		printserver.addr = lib.mkOption {
 			type = lib.types.str;
-			default = "8080";
-			description = "Label printing server port";
+			default = "127.0.0.1:8080";
+			description = "Label printing server address";
 		};
 	};
 
@@ -22,7 +22,7 @@ in
 			enable = true;
 			description = "Label printing server";
 			serviceConfig = {
-				ExecStart = "${labelpkgs.printserver}/bin/printserver zebra ${config.label.printserver.port}";
+				ExecStart = "${labelpkgs.printserver}/bin/printserver zebra ${config.label.printserver.addr}";
 				Restart = "always";
 			};
 			wantedBy = [ "multi-user.target" ];
