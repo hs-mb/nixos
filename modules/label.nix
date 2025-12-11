@@ -16,14 +16,13 @@ in
 	config = lib.mkIf config.label.enable {
 		environment.systemPackages = [
 			labelpkgs.textlabel
-			labelpkgs.printserver
 		];
 
 		systemd.services.printserver = {
 			enable = true;
 			description = "Label printing server";
 			serviceConfig = {
-				ExecStart = "printserver zebra ${config.printserver.port}";
+				ExecStart = "${labelpkgs.printserver}/bin/printserver zebra ${config.label.printserver.port}";
 				Restart = "always";
 			};
 			wantedBy = [ "multi-user.target" ];
