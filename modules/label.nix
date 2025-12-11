@@ -1,4 +1,4 @@
-{ config, lib, system, label, ... }:
+{ config, pkgs, lib, system, label, ... }:
 
 let
 	labelpkgs = label.packages.${system};
@@ -8,7 +8,7 @@ in
 		enable = lib.mkEnableOption "Enable the label module";
 		printserver.addr = lib.mkOption {
 			type = lib.types.str;
-			default = "127.0.0.1:8080";
+			default = "0.0.0.0:8080";
 			description = "Label printing server address";
 		};
 	};
