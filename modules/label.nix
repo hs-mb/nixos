@@ -7,7 +7,7 @@ in
 	options.label = {
 		enable = lib.mkEnableOption "Enable the label module";
 		printserver.port = lib.mkOption {
-			type = lib.types.string;
+			type = lib.types.str;
 			default = "8080";
 			description = "Label printing server port";
 		};
