@@ -10,7 +10,7 @@
 		};
 	};
 
-	outputs = { self, nixpkgs, ... }@inputs: {
+	outputs = { self, nixpkgs, label, ... }@inputs: {
 		nixosConfigurations =
 			let
 				system = "x86_64-linux";
@@ -24,6 +24,7 @@
 					];
 					specialArgs = {
 						inherit system;
+						inherit label;
 					};
 				};
 			};

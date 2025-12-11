@@ -1,11 +1,13 @@
-{ system, ... }:
+{ config, lib, system, label, ... }:
 
 {
-	imports = [
-		label
-	];
+	options.label = {
+		enable = lib.mkEnableOption "Enable the label module";
+	};
 
-	environment.systemPackages = [
-		label.packages.${system}.textlabel
-	];
+	config = lib.mkIf config.label.enable {
+		environment.systemPackages = [
+			label.packages.${system}.textlabel
+		];
+	};
 }
