@@ -9,11 +9,11 @@
         "templ": "templ"
       },
       "locked": {
-        "lastModified": 1765964626,
-        "narHash": "sha256-F/6uS0QAPgCwYGt0tjtbSVWY5UuhiGgAAWz05pxFn1Q=",
+        "lastModified": 1765965021,
+        "narHash": "sha256-5FpxbOnVZO0j6mCBqpTMIfHrqE74O6GDkwrfoYI420s=",
         "owner": "hs-mb",
         "repo": "etikett",
-        "rev": "c4f1db2590476a916a408393605920e784f6923e",
+        "rev": "a6b4b98b9097afb1db45e3943282d85908728e5e",
         "type": "github"
       },
       "original": {
