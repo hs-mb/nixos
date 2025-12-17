@@ -4,13 +4,13 @@
 	inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
-		label = {
-			url = "github:hs-mb/label";
+		etikett = {
+			url = "github:hs-mb/etikett";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
 
-	outputs = { self, nixpkgs, label, ... }@inputs: {
+	outputs = { self, nixpkgs, etikett, ... }@inputs: {
 		nixosConfigurations =
 			let
 				system = "x86_64-linux";
@@ -24,7 +24,7 @@
 					];
 					specialArgs = {
 						inherit system;
-						inherit label;
+						inherit etikett;
 					};
 				};
 			};

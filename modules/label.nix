@@ -1,16 +1,11 @@
-{ config, pkgs, lib, system, label, ... }:
+{ config, pkgs, lib, system, etikett, ... }:
 
 let
-	labelpkgs = label.packages.${system};
+	labelpkgs = etikett.packages.${system};
 in
 {
 	options.label = {
 		enable = lib.mkEnableOption "Enable the label module";
-		printserver.addr = lib.mkOption {
-			type = lib.types.str;
-			default = "0.0.0.0:8080";
-			description = "Label printing server address";
-		};
 	};
 
 	config = lib.mkIf config.label.enable {
@@ -22,7 +17,17 @@ in
 			enable = true;
 			description = "Label printing server";
 			serviceConfig = {
-				ExecStart = "${labelpkgs.printserver}/bin/printserver -b \"${pkgs.cups}/bin/lpr\" zebra ${config.label.printserver.addr}";
+				ExecStart = "${labelpkgs.printserver}/bin/printserver -b \"${pkgs.cups}/bin/lpr\" zebra";
+				Restart = "always";
+			};
+			wantedBy = [ "multi-user.target" ];
+		};
+
+		systemd.services.webprint = {
+			enable = true;
+			description = "Web printing server";
+			serviceConfig = {
+				ExecStart = "${labelpkgs.webprint}/bin/webprint ws://192.168.178.48:6245";
 				Restart = "always";
 			};
 			wantedBy = [ "multi-user.target" ];
