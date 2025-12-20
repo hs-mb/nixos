@@ -2,9 +2,6 @@
 
 let
 	labelpkgs = etikett.packages.${system};
-	webprint = labelpkgs.webprint.overrideAttrs (_: {
-		serveAddr = "0.0.0.0:80";
-	});
 in
 {
 	options.label = {
@@ -30,7 +27,7 @@ in
 			enable = true;
 			description = "Web printing server";
 			serviceConfig = {
-				ExecStart = "${webprint}/bin/webprint ws://192.168.178.48:6245";
+				ExecStart = "${labelpkgs.webprint}/bin/webprint 0.0.0.0:80 ws://192.168.178.48:6245";
 				Restart = "always";
 			};
 			wantedBy = [ "multi-user.target" ];
